@@ -1,7 +1,9 @@
 name: demo
 
 on:
-  workflow_dispatch:
+  push: 
+    branches:
+      - main
 jobs:
   job-1:
     runs-on: ubuntu-latest
@@ -20,5 +22,13 @@ jobs:
     steps:
     - name: C1
       run: echo "C"
+  job-4:
+    runs-on: ubuntu-latest
+    needs: 
+      - job-2
+      - job-3
+    steps:
+    - name: D1
+      run: "Code Pushed to branch main, Triggering job-4 after job-2 and job-3 are completed"
 
 
